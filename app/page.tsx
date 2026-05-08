@@ -40,6 +40,37 @@ const services = [
   },
 ];
 
+const servicesBlocks = [
+  {
+    tag: 'Compraventa & Alquiler',
+    title: 'Gekko Home',
+    tagline: 'Tu casa, sin sustos. Compra, vende, alquila con todo bien atado.',
+    href: '/servicios/gekko-home',
+    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1400&auto=format&fit=crop',
+  },
+  {
+    tag: 'Alquiler temporal',
+    title: 'Gekko Roomers',
+    tagline: 'Pisos y habitaciones bien gestionadas. Sin drama de inquilinos.',
+    href: '/servicios/gekko-roomers',
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1400&auto=format&fit=crop',
+  },
+  {
+    tag: 'Inversión',
+    title: 'Gekko Investment',
+    tagline: 'Buscamos la oportunidad. Tú decides. Datos reales, no humo.',
+    href: '/servicios/gekko-investment',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop',
+  },
+  {
+    tag: 'Reformas',
+    title: 'Gekko Refurbishing',
+    tagline: 'De obsoleto a precioso. Reformas integrales con visualización 3D.',
+    href: '/servicios/gekko-refurbishing',
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1400&auto=format&fit=crop',
+  },
+];
+
 const values = [
   { icon: Shield, title: 'Confianza', text: 'Transparencia y honestidad en cada transacción que realizamos.' },
   { icon: Eye, title: 'Visión', text: 'Identificamos oportunidades donde otros ven solo inmuebles.' },
@@ -76,15 +107,7 @@ export default function HomePage() {
       <Hero
         subtitle="GEKKO REAL ESTATE · MADRID"
         title="Hola Madrid."
-        description="Inmobiliaria, inversión y reformas en Madrid. Para los que compran, los que invierten y los que reforman. Para los que valoran que las cosas se hagan bien."
-        primaryCTA={{
-          text: 'Ver servicios',
-          href: '/servicios',
-        }}
-        secondaryCTA={{
-          text: 'Hablamos',
-          href: '/contacto',
-        }}
+        description="Inmobiliaria, inversión y reformas en Madrid. Para los que compran, para los que invierten, para los que reforman. Para los que valoran que las cosas se hagan bien."
       />
 
       {/* Stats Section */}
@@ -188,32 +211,106 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="section bg-white">
-        <div className="wrapper">
-          <AnimatedSection>
-            <div className="text-center" style={{ marginBottom: '64px' }}>
-              <span className="subtitle">NUESTROS SERVICIOS</span>
-              <h2 className="title-lg">Soluciones inmobiliarias completas</h2>
-              <div className="gold-line centered" />
-              <p className="body-text" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                Ofrecemos una gama completa de servicios diseñados para satisfacer todas tus necesidades inmobiliarias.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid-4">
-            {services.map((service, i) => (
-              <AnimatedSection key={service.title} delay={i * 0.1}>
-                <Link href={service.href} className="service-card" style={{ height: '100%' }}>
-                  <service.icon className="icon" />
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                  <span className="link-text">Explorar más →</span>
+      {/* Services Section — Big nav blocks (Gekko House style) */}
+      <section style={{ backgroundColor: 'var(--color-bg)', padding: '40px 0 93px' }}>
+        <div className="wrapper" style={{ maxWidth: '1320px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '24px',
+            }}
+          >
+            {servicesBlocks.map((service, i) => (
+              <AnimatedSection key={service.title} delay={i * 0.08}>
+                <Link
+                  href={service.href}
+                  style={{
+                    position: 'relative',
+                    display: 'block',
+                    aspectRatio: '4 / 5',
+                    overflow: 'hidden',
+                    borderRadius: '0',
+                    backgroundColor: 'var(--color-arena)',
+                  }}
+                  className="nav-block"
+                >
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      transition: 'transform 0.6s ease, filter 0.4s ease',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background:
+                        'linear-gradient(180deg, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.55) 100%)',
+                      transition: 'background 0.4s ease',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '24px',
+                      right: '24px',
+                      bottom: '24px',
+                      color: '#FFFFFF',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "'Manrope', sans-serif",
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        letterSpacing: '0.2em',
+                        textTransform: 'uppercase',
+                        opacity: 0.85,
+                        display: 'block',
+                        marginBottom: '8px',
+                      }}
+                    >
+                      {service.tag}
+                    </span>
+                    <h3
+                      className="nav-block-link"
+                      style={{ color: '#FFFFFF', marginBottom: '8px', fontSize: 'clamp(28px, 3vw, 44px)' }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Manrope', sans-serif",
+                        fontSize: '13px',
+                        lineHeight: 1.5,
+                        color: 'rgba(255,255,255,0.85)',
+                        fontWeight: 500,
+                        margin: 0,
+                        maxWidth: '280px',
+                      }}
+                    >
+                      {service.tagline}
+                    </p>
+                  </div>
                 </Link>
               </AnimatedSection>
             ))}
           </div>
+
+          <style jsx>{`
+            .nav-block:hover img {
+              transform: scale(1.06);
+            }
+            .nav-block:hover > div:nth-child(2) {
+              background: linear-gradient(180deg, rgba(0,0,0,0.0) 10%, rgba(0,0,0,0.7) 100%);
+            }
+          `}</style>
         </div>
       </section>
 

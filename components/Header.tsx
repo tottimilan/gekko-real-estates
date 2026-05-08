@@ -3,16 +3,13 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, MapPin, Mail } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-
-  const isHome = pathname === '/';
-  const hasDarkHero = isHome;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,139 +31,252 @@ export default function Header() {
     { href: '/contacto', label: 'Contacto' },
   ];
 
-  const showWhiteVariant = hasDarkHero && !isScrolled;
-  const linkColor = showWhiteVariant ? '#FFFFFF' : 'var(--color-text)';
-  const logoSrc = showWhiteVariant
-    ? '/images/logo-gekko-white.svg'
-    : '/images/logo-gekko.svg';
+  const ctaLinkStyle: React.CSSProperties = {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    color: '#FFFFFF',
+    fontSize: '12px',
+    fontWeight: 700,
+    letterSpacing: '0.06em',
+    fontFamily: "'Manrope', sans-serif",
+    transition: 'background-color 0.2s ease',
+    borderRight: '1px solid rgba(255,255,255,0.25)',
+  };
 
   return (
-    <header style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 50,
-      transition: 'all 0.35s ease',
-      backgroundColor: isScrolled ? 'rgba(255,255,255,0.97)' : (hasDarkHero ? 'transparent' : 'rgba(255,255,255,0.97)'),
-      backdropFilter: (isScrolled || !hasDarkHero) ? 'blur(12px)' : 'none',
-      boxShadow: isScrolled ? '0 1px 12px rgba(0,0,0,0.06)' : (hasDarkHero ? 'none' : '0 1px 8px rgba(0,0,0,0.04)'),
-    }}>
-      <div style={{
-        maxWidth: '1260px',
-        margin: '0 auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: isScrolled ? '6px 32px' : '10px 32px',
-        transition: 'padding 0.35s ease',
-      }}>
-        {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+    <header
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 999,
+        backgroundColor: '#FFFFFF',
+        borderBottom: isScrolled ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
+        transition: 'border-color 0.3s ease',
+      }}
+    >
+      {/* TOP STRIP — sage */}
+      <div
+        style={{
+          backgroundColor: 'var(--color-sage)',
+          height: '40px',
+          display: 'flex',
+          alignItems: 'stretch',
+        }}
+      >
+        <Link
+          href="/contacto"
+          style={ctaLinkStyle}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-sage-dark)')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+        >
+          Solicitar visita
+        </Link>
+        <Link
+          href="/contacto"
+          style={ctaLinkStyle}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-sage-dark)')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+        >
+          Contactar
+        </Link>
+        {/* Desktop right icons */}
+        <div
+          className="desktop-flex"
+          style={{
+            display: 'none',
+            alignItems: 'center',
+            gap: '4px',
+            paddingRight: '24px',
+            paddingLeft: '12px',
+          }}
+        >
+          <a
+            href="https://maps.google.com/?q=Av.+de+Manoteras+30+Madrid"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Ubicación"
+            style={{
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#FFFFFF',
+              transition: 'opacity 0.2s ease',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+          >
+            <MapPin size={16} strokeWidth={2} />
+          </a>
+          <a
+            href="mailto:info@gekkorealestates.com"
+            aria-label="Email"
+            style={{
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#FFFFFF',
+              transition: 'opacity 0.2s ease',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+          >
+            <Mail size={16} strokeWidth={2} />
+          </a>
+        </div>
+      </div>
+
+      {/* BOTTOM STRIP — white */}
+      <div
+        style={{
+          height: isScrolled ? '64px' : '76px',
+          padding: '0 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          transition: 'height 0.3s ease',
+          maxWidth: '1424px',
+          margin: '0 auto',
+        }}
+      >
+        {/* Left: burger (mobile) + nav (desktop) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+          <button
+            className="mobile-only"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menú"
+            style={{
+              padding: '8px',
+              color: 'var(--color-black)',
+              border: 'none',
+              background: 'none',
+            }}
+          >
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+          <nav
+            className="desktop-flex"
+            style={{
+              display: 'none',
+              alignItems: 'center',
+              gap: '32px',
+            }}
+          >
+            {navLinks.slice(0, 3).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  color: 'var(--color-black)',
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  letterSpacing: '0.01em',
+                  position: 'relative',
+                  paddingBottom: '4px',
+                  transition: 'color 0.2s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-sage-dark)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-black)')}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Center: Logo */}
+        <Link
+          href="/"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <Image
-            key={logoSrc}
-            src={logoSrc}
+            src="/images/logo-gekko.svg"
             alt="Gekko Real Estates"
-            width={105}
-            height={52}
+            width={isScrolled ? 90 : 110}
+            height={isScrolled ? 44 : 54}
             style={{ height: 'auto', transition: 'all 0.3s ease' }}
             priority
           />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="desktop-flex" style={{
-          display: 'none',
-          gap: '32px',
-          alignItems: 'center',
-        }}>
-          {navLinks.map((link) => (
+        {/* Right: more nav (desktop) */}
+        <nav
+          className="desktop-flex"
+          style={{
+            display: 'none',
+            alignItems: 'center',
+            gap: '32px',
+          }}
+        >
+          {navLinks.slice(3).map((link) => (
             <Link
               key={link.href}
               href={link.href}
               style={{
-                color: linkColor,
-                fontSize: '13px',
-                fontWeight: 500,
-                letterSpacing: '0.04em',
-                transition: 'color 0.3s ease',
-                padding: '6px 0',
+                color: 'var(--color-black)',
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: '14px',
+                fontWeight: 600,
+                letterSpacing: '0.01em',
+                transition: 'color 0.2s ease',
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = linkColor}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-sage-dark)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-black)')}
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contacto"
-            className="btn btn-primary"
-            style={{ padding: '10px 24px', fontSize: '11px', borderRadius: '4px' }}
-          >
-            Contáctanos
-          </Link>
         </nav>
 
-        {/* Mobile burger */}
-        <button
-          className="mobile-only"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          style={{
-            padding: '8px',
-            color: showWhiteVariant ? '#fff' : 'var(--color-text)',
-            border: 'none',
-            background: 'none',
-            transition: 'color 0.3s ease',
-          }}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile placeholder for symmetry */}
+        <div className="mobile-only" style={{ width: '32px' }} />
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="mobile-only" style={{
-          backgroundColor: 'var(--color-white)',
-          borderTop: '1px solid var(--color-border)',
-          padding: '16px 24px 24px',
-          boxShadow: '0 12px 24px rgba(0,0,0,0.08)',
-        }}>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        <div
+          className="mobile-only"
+          style={{
+            backgroundColor: '#FFFFFF',
+            borderTop: '1px solid rgba(0,0,0,0.08)',
+            padding: '16px 24px 24px',
+            boxShadow: '0 12px 24px rgba(0,0,0,0.08)',
+          }}
+        >
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
                 style={{
-                  padding: '14px 16px',
-                  color: 'var(--color-text)',
-                  fontSize: '15px',
-                  fontWeight: 500,
-                  borderRadius: '6px',
-                  transition: 'all 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-arena)';
-                  e.currentTarget.style.color = 'var(--color-gold)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = 'var(--color-text)';
+                  padding: '16px 12px',
+                  color: 'var(--color-black)',
+                  fontSize: '17px',
+                  fontWeight: 700,
+                  fontFamily: "'Manrope', sans-serif",
+                  letterSpacing: '-0.01em',
+                  borderBottom: '1px solid rgba(0,0,0,0.06)',
                 }}
               >
                 {link.label}
               </Link>
             ))}
-            <div style={{ marginTop: '12px' }}>
-              <Link
-                href="/contacto"
-                className="btn btn-primary"
-                onClick={() => setIsMenuOpen(false)}
-                style={{ width: '100%', display: 'block' }}
-              >
-                Contáctanos
-              </Link>
-            </div>
           </nav>
         </div>
       )}

@@ -1,13 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-interface HeroBullet {
-  bold: string;
-  text: string;
-}
 
 interface HeroImage {
   src: string;
@@ -15,11 +9,15 @@ interface HeroImage {
   caption?: string;
 }
 
+interface HeroNavLink {
+  label: string;
+  href: string;
+}
+
 interface HeroProps {
   title: string;
   subtitle?: string;
   description: string;
-  bullets?: HeroBullet[];
   primaryCTA?: {
     text: string;
     href: string;
@@ -29,6 +27,7 @@ interface HeroProps {
     href: string;
   };
   images?: HeroImage[];
+  navLinks?: HeroNavLink[];
 }
 
 const defaultImages: HeroImage[] = [
@@ -49,242 +48,248 @@ const defaultImages: HeroImage[] = [
   },
 ];
 
+const defaultNavLinks: HeroNavLink[] = [
+  { label: 'Gekko Home', href: '/servicios/gekko-home' },
+  { label: 'Gekko Roomers', href: '/servicios/gekko-roomers' },
+  { label: 'Gekko Investment', href: '/servicios/gekko-investment' },
+  { label: 'Gekko Refurbishing', href: '/servicios/gekko-refurbishing' },
+];
+
 export default function Hero({
   title,
   subtitle = 'GEKKO REAL ESTATE · MADRID',
   description,
-  primaryCTA,
-  secondaryCTA,
   images = defaultImages,
+  navLinks = defaultNavLinks,
 }: HeroProps) {
   return (
-    <section
-      style={{
-        position: 'relative',
-        backgroundColor: 'var(--color-bg)',
-        paddingTop: '160px',
-        paddingBottom: '120px',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Subtle texture / grid background */}
-      <div
-        aria-hidden
+    <>
+      {/* SECTION 1 — Photo moodboard (the photo IS the hero) */}
+      <section
         style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage:
-            'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)',
-          backgroundSize: '32px 32px',
-          opacity: 0.5,
-          pointerEvents: 'none',
+          position: 'relative',
+          backgroundColor: 'var(--color-bg)',
+          paddingTop: '140px', // 40 top strip + ~80 bottom + breathing room
+          paddingBottom: '40px',
+          overflow: 'hidden',
         }}
-      />
-
-      <div
-        className="wrapper"
-        style={{ position: 'relative', zIndex: 1, maxWidth: '1320px' }}
       >
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            marginBottom: '28px',
-          }}
+        <div
+          className="wrapper"
+          style={{ position: 'relative', maxWidth: '1320px' }}
         >
-          <span
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
             style={{
-              width: '32px',
-              height: '1px',
-              backgroundColor: 'var(--color-gold)',
-            }}
-          />
-          <span className="eyebrow">{subtitle}</span>
-        </motion.div>
-
-        {/* Mega heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="title-mega"
-          style={{
-            maxWidth: '1100px',
-            marginBottom: '40px',
-          }}
-        >
-          {title}
-        </motion.h1>
-
-        {/* Editorial body + CTAs row */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '32px',
-            alignItems: 'end',
-            maxWidth: '1100px',
-            marginBottom: '80px',
-          }}
-        >
-          <p
-            className="editorial-lead"
-            style={{
-              maxWidth: '640px',
-              margin: 0,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              marginBottom: '28px',
             }}
           >
-            {description}
-          </p>
-
-          {(primaryCTA || secondaryCTA) && (
-            <div
+            <span
               style={{
-                display: 'flex',
-                gap: '14px',
-                flexWrap: 'wrap',
-                alignItems: 'center',
+                width: '32px',
+                height: '1px',
+                backgroundColor: 'var(--color-sage-dark)',
               }}
-            >
-              {primaryCTA && (
-                <Link
-                  href={primaryCTA.href}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    padding: '16px 28px',
-                    backgroundColor: 'var(--color-black)',
-                    color: 'var(--color-white)',
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    letterSpacing: '0.04em',
-                    borderRadius: '999px',
-                    transition: 'all 0.3s ease',
-                    fontFamily: "'Inter', sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-gold)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-black)';
-                  }}
-                >
-                  {primaryCTA.text}
-                  <ArrowRight size={14} />
-                </Link>
-              )}
-              {secondaryCTA && (
-                <Link
-                  href={secondaryCTA.href}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    padding: '16px 28px',
-                    color: 'var(--color-black)',
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    letterSpacing: '0.04em',
-                    borderRadius: '999px',
-                    border: '1px solid var(--color-black)',
-                    transition: 'all 0.3s ease',
-                    fontFamily: "'Inter', sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--color-black)';
-                    e.currentTarget.style.color = 'var(--color-white)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = 'var(--color-black)';
-                  }}
-                >
-                  {secondaryCTA.text}
-                </Link>
-              )}
-            </div>
-          )}
-        </motion.div>
+            />
+            <span className="eyebrow">{subtitle}</span>
+          </motion.div>
 
-        {/* Moodboard gallery */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px',
-          }}
-        >
-          {images.map((img, i) => {
-            const rotations = ['-2deg', '1.5deg', '-1deg', '2deg'];
-            const rotation = rotations[i % rotations.length];
-            const offsets = ['0px', '24px', '0px', '32px'];
-            const offset = offsets[i % offsets.length];
-            return (
-              <motion.figure
-                key={img.src}
-                initial={{ opacity: 0, y: 30, rotate: '0deg' }}
-                animate={{ opacity: 1, y: 0, rotate: rotation }}
-                transition={{ duration: 0.6, delay: 0.5 + i * 0.1 }}
-                whileHover={{ rotate: '0deg', y: -6 }}
-                style={{
-                  marginTop: offset,
-                  backgroundColor: 'var(--color-white)',
-                  padding: '12px 12px 16px',
-                  boxShadow: '0 12px 40px rgba(0,0,0,0.08)',
-                  transition: 'transform 0.4s ease',
-                  transformOrigin: 'center top',
-                }}
-              >
-                <div
+          {/* Moodboard gallery */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '24px',
+            }}
+          >
+            {images.map((img, i) => {
+              const rotations = ['-2deg', '1.5deg', '-1deg', '2deg'];
+              const rotation = rotations[i % rotations.length];
+              const offsets = ['0px', '32px', '0px', '40px'];
+              const offset = offsets[i % offsets.length];
+              return (
+                <motion.figure
+                  key={img.src}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0, rotate: rotation }}
+                  transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                  whileHover={{ rotate: '0deg', y: -6, scale: 1.02 }}
                   style={{
-                    aspectRatio: '4 / 5',
-                    overflow: 'hidden',
-                    backgroundColor: 'var(--color-arena)',
+                    marginTop: offset,
+                    backgroundColor: '#FFFFFF',
+                    padding: '14px 14px 18px',
+                    boxShadow: '0 12px 40px rgba(0,0,0,0.10)',
+                    transformOrigin: 'center top',
+                    cursor: 'default',
                   }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={img.src}
-                    alt={img.alt}
+                  <div
                     style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                    }}
-                  />
-                </div>
-                {img.caption && (
-                  <figcaption
-                    style={{
-                      marginTop: '12px',
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: '12px',
-                      lineHeight: 1.5,
-                      color: 'var(--color-text-light)',
-                      letterSpacing: '0.01em',
+                      aspectRatio: '4 / 5',
+                      overflow: 'hidden',
+                      backgroundColor: 'var(--color-arena)',
                     }}
                   >
-                    {img.caption}
-                  </figcaption>
-                )}
-              </motion.figure>
-            );
-          })}
-        </motion.div>
-      </div>
-    </section>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                    />
+                  </div>
+                  {img.caption && (
+                    <figcaption
+                      style={{
+                        marginTop: '14px',
+                        fontFamily: "'Manrope', sans-serif",
+                        fontSize: '12.5px',
+                        lineHeight: 1.45,
+                        color: 'var(--color-text-light)',
+                        letterSpacing: '0.01em',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {img.caption}
+                    </figcaption>
+                  )}
+                </motion.figure>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 2 — Editorial intro: mega heading + lead + side nav */}
+      <section
+        style={{
+          backgroundColor: 'var(--color-bg)',
+          padding: '93px 0',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          className="wrapper"
+          style={{ maxWidth: '1320px' }}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '64px',
+              alignItems: 'start',
+            }}
+          >
+            {/* LEFT: heading + description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                gridColumn: '1 / -1',
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+                gap: '40px',
+              }}
+              className="hero-grid"
+            >
+              <div style={{ maxWidth: '900px' }}>
+                <h1 className="title-mega" style={{ marginBottom: '32px' }}>
+                  {title}
+                </h1>
+                <p
+                  className="editorial-lead"
+                  style={{ maxWidth: '640px', margin: 0 }}
+                >
+                  {description}
+                </p>
+              </div>
+
+              {/* RIGHT: side nav (4 services) */}
+              <nav
+                aria-label="Servicios"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  borderTop: '1px solid rgba(0,0,0,0.12)',
+                  paddingTop: '24px',
+                }}
+              >
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -8 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                  >
+                    <Link
+                      href={link.href}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '18px 0',
+                        borderBottom: '1px solid rgba(0,0,0,0.12)',
+                        fontFamily: "'Manrope', sans-serif",
+                        fontWeight: 800,
+                        fontSize: 'clamp(20px, 2.2vw, 28px)',
+                        letterSpacing: '-0.02em',
+                        color: 'var(--color-black)',
+                        transition: 'color 0.2s ease, padding 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = 'var(--color-sage-dark)';
+                        e.currentTarget.style.paddingLeft = '12px';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = 'var(--color-black)';
+                        e.currentTarget.style.paddingLeft = '0px';
+                      }}
+                    >
+                      <span>{link.label}</span>
+                      <span
+                        aria-hidden
+                        style={{
+                          fontWeight: 400,
+                          fontSize: '20px',
+                          color: 'var(--color-text-muted)',
+                        }}
+                      >
+                        →
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <style jsx>{`
+        @media (min-width: 900px) {
+          .hero-grid {
+            grid-template-columns: 1.4fr 1fr !important;
+            gap: 80px !important;
+          }
+        }
+      `}</style>
+    </>
   );
 }
