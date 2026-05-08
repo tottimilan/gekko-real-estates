@@ -45,11 +45,11 @@ export default function ServicePageTemplate({
           <AnimatedSection>
             <div style={{
               width: '64px', height: '64px', borderRadius: 'var(--radius-lg)',
-              backgroundColor: 'rgba(168, 131, 41, 0.1)',
+              backgroundColor: 'rgba(153, 173, 144, 0.16)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 24px',
             }}>
-              <Icon size={28} style={{ color: 'var(--color-gold)' }} />
+              <Icon size={28} style={{ color: 'var(--color-sage-dark)' }} />
             </div>
             <span className="subtitle">{subtitle}</span>
             <h1 className="title-xl">{title}</h1>
@@ -131,11 +131,11 @@ export default function ServicePageTemplate({
                 }}>
                   <div style={{
                     width: '36px', height: '36px', borderRadius: '50%',
-                    backgroundColor: 'rgba(168, 131, 41, 0.1)',
+                    backgroundColor: 'rgba(153, 173, 144, 0.16)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                   }}>
-                    <span style={{ color: 'var(--color-gold)', fontWeight: 700, fontSize: '14px' }}>{i + 1}</span>
+                    <span style={{ color: 'var(--color-sage-dark)', fontWeight: 700, fontSize: '14px' }}>{i + 1}</span>
                   </div>
                   <p style={{ fontSize: '15px', color: 'var(--color-text)', lineHeight: 1.7 }}>{benefit}</p>
                 </div>

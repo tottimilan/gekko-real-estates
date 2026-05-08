@@ -10,30 +10,63 @@ export default function Footer() {
   const [email, setEmail] = useState('');
 
   return (
-    <footer style={{ backgroundColor: 'var(--color-arena-dark)', borderTop: '2px solid var(--color-gold)' }}>
+    <footer
+      style={{
+        backgroundColor: 'var(--color-arena-dark)',
+        borderTop: '1px solid var(--color-sage)',
+      }}
+    >
       {/* Newsletter Bar */}
-      <div style={{ backgroundColor: 'var(--color-arena)', padding: '48px 0' }}>
-        <div className="wrapper" style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '16px',
-          textAlign: 'center',
-        }}>
-          <h3 style={{ fontSize: '28px', color: 'var(--color-black)' }}>
+      <div style={{ backgroundColor: 'var(--color-arena)', padding: '56px 0' }}>
+        <div
+          className="wrapper"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+            textAlign: 'center',
+          }}
+        >
+          <span className="eyebrow">Newsletter</span>
+          <h3
+            style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontWeight: 800,
+              letterSpacing: '-0.025em',
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              color: 'var(--color-black)',
+              marginTop: '4px',
+            }}
+          >
             No te pierdas las novedades
           </h3>
-          <p style={{ color: 'var(--color-text-light)', fontSize: '14px', maxWidth: '500px' }}>
-            Suscríbete a nuestro newsletter y recibe las últimas oportunidades de inversión inmobiliaria.
+          <p
+            style={{
+              color: 'var(--color-text-light)',
+              fontSize: '14px',
+              maxWidth: '500px',
+              fontWeight: 500,
+            }}
+          >
+            Suscríbete y recibe oportunidades de inversión y nuevas propiedades directamente en tu correo.
           </p>
-          <div className="newsletter-form" style={{ marginTop: '8px' }}>
+          <div className="newsletter-form" style={{ marginTop: '16px' }}>
             <input
               type="email"
               placeholder="Tu correo electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="btn btn-primary" style={{ padding: '16px 24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button
+              className="btn btn-primary"
+              style={{
+                padding: '16px 24px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
               Suscribirme
               <ArrowRight size={14} />
             </button>
@@ -42,7 +75,7 @@ export default function Footer() {
       </div>
 
       <div className="wrapper" style={{ padding: '64px 24px 0' }}>
-        <div className="grid-4" style={{ paddingBottom: '64px' }}>
+        <div className="grid-4" style={{ paddingBottom: '48px' }}>
           {/* Brand */}
           <div>
             <Link href="/" style={{ display: 'inline-block', marginBottom: '20px' }}>
@@ -54,40 +87,49 @@ export default function Footer() {
                 style={{ height: 'auto' }}
               />
             </Link>
-            <p style={{ color: 'var(--color-text-light)', fontSize: '14px', lineHeight: '1.7', marginBottom: '24px' }}>
+            <p
+              style={{
+                color: 'var(--color-text-light)',
+                fontSize: '14px',
+                lineHeight: '1.65',
+                marginBottom: '24px',
+                fontWeight: 500,
+              }}
+            >
               Tu socio de confianza en inversión inmobiliaria. Compra, vende y alquila con la seguridad de un equipo experto a tu lado.
             </p>
             <div style={{ display: 'flex', gap: '10px' }}>
               {[
-                { Icon: Facebook, href: 'https://facebook.com' },
-                { Icon: Instagram, href: 'https://instagram.com' },
-                { Icon: Linkedin, href: 'https://linkedin.com' },
-              ].map(({ Icon, href }) => (
+                { Icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+                { Icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+                { Icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+              ].map(({ Icon, href, label }) => (
                 <a
                   key={href}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={label}
                   style={{
                     width: '38px',
                     height: '38px',
                     borderRadius: '50%',
-                    border: '1px solid var(--color-border)',
+                    border: '1px solid rgba(0,0,0,0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'var(--color-text-light)',
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.25s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-gold)';
-                    e.currentTarget.style.color = 'var(--color-gold)';
-                    e.currentTarget.style.backgroundColor = 'rgba(168, 131, 41, 0.05)';
+                    e.currentTarget.style.borderColor = 'var(--color-sage)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-sage)';
+                    e.currentTarget.style.color = 'var(--color-white)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-border)';
-                    e.currentTarget.style.color = 'var(--color-text-light)';
+                    e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)';
                     e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'var(--color-text-light)';
                   }}
                 >
                   <Icon size={16} />
@@ -98,9 +140,19 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 style={{ color: 'var(--color-black)', fontSize: '18px', fontWeight: 600, marginBottom: '20px' }}>
+            <h4
+              style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: 'var(--color-sage-dark)',
+                marginBottom: '20px',
+              }}
+            >
               Servicios
-            </h3>
+            </h4>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
                 { href: '/servicios/gekko-home', label: 'Gekko Home' },
@@ -111,9 +163,14 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    style={{ color: 'var(--color-text-light)', fontSize: '14px', transition: 'color 0.3s ease' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-light)'}
+                    style={{
+                      color: 'var(--color-text-light)',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      transition: 'color 0.25s ease',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-sage-dark)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-light)')}
                   >
                     {link.label}
                   </Link>
@@ -124,9 +181,19 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 style={{ color: 'var(--color-black)', fontSize: '18px', fontWeight: 600, marginBottom: '20px' }}>
+            <h4
+              style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: 'var(--color-sage-dark)',
+                marginBottom: '20px',
+              }}
+            >
               Enlaces
-            </h3>
+            </h4>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
                 { href: '/', label: 'Inicio' },
@@ -138,9 +205,14 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    style={{ color: 'var(--color-text-light)', fontSize: '14px', transition: 'color 0.3s ease' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-light)'}
+                    style={{
+                      color: 'var(--color-text-light)',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      transition: 'color 0.25s ease',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-sage-dark)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-light)')}
                   >
                     {link.label}
                   </Link>
@@ -151,9 +223,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 style={{ color: 'var(--color-black)', fontSize: '18px', fontWeight: 600, marginBottom: '20px' }}>
+            <h4
+              style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: 'var(--color-sage-dark)',
+                marginBottom: '20px',
+              }}
+            >
               Contacto
-            </h3>
+            </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {[
                 { Icon: Phone, text: '+34 917 045 896', href: 'tel:+34917045896' },
@@ -164,35 +246,55 @@ export default function Footer() {
                   key={i}
                   href={item.href}
                   style={{
-                    display: 'flex', alignItems: 'center', gap: '10px',
-                    color: 'var(--color-text-light)', fontSize: '14px', transition: 'color 0.3s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    color: 'var(--color-text-light)',
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    transition: 'color 0.25s ease',
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-light)'}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-sage-dark)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-light)')}
                 >
-                  <item.Icon size={16} style={{ color: 'var(--color-gold)', flexShrink: 0 }} />
+                  <item.Icon size={16} style={{ color: 'var(--color-sage-dark)', flexShrink: 0 }} />
                   {item.text}
                 </a>
               ))}
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--color-text-light)', fontSize: '14px' }}>
-                <MapPin size={16} style={{ color: 'var(--color-gold)', flexShrink: 0, marginTop: '2px' }} />
-                <span>Av. de Manoteras, 30<br />28050 Madrid, España</span>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  color: 'var(--color-text-light)',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                }}
+              >
+                <MapPin size={16} style={{ color: 'var(--color-sage-dark)', flexShrink: 0, marginTop: '2px' }} />
+                <span>
+                  Av. de Manoteras, 30
+                  <br />
+                  28050 Madrid, España
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div style={{
-          borderTop: '1px solid var(--color-border)',
-          padding: '24px 0',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '16px',
-          textAlign: 'center',
-        }}>
+        <div
+          style={{
+            borderTop: '1px solid rgba(0,0,0,0.08)',
+            padding: '24px 0',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '16px',
+            textAlign: 'center',
+          }}
+        >
           <p style={{ color: 'var(--color-text-muted)', fontSize: '13px', margin: 0 }}>
             © {currentYear} Gekko Real Estate Investment & Properties Management SL. Todos los derechos reservados.
           </p>
@@ -201,9 +303,13 @@ export default function Footer() {
               <Link
                 key={text}
                 href={`/${text.toLowerCase().replace(/ /g, '-').replace(/í/g, 'i')}`}
-                style={{ color: 'var(--color-text-muted)', fontSize: '13px', transition: 'color 0.3s ease' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-gold)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
+                style={{
+                  color: 'var(--color-text-muted)',
+                  fontSize: '13px',
+                  transition: 'color 0.25s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-sage-dark)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-muted)')}
               >
                 {text}
               </Link>

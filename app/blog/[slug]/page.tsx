@@ -105,12 +105,14 @@ export default function BlogPostPage() {
                 if (trimmed.startsWith('## ')) {
                   return (
                     <h2 key={i} style={{
-                      fontFamily: "'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "'Manrope', sans-serif",
+                      fontWeight: 800,
+                      letterSpacing: '-0.025em',
                       fontSize: '32px',
                       color: 'var(--color-black)',
                       marginTop: '48px',
                       marginBottom: '24px',
-                      lineHeight: 1.3,
+                      lineHeight: 1.2,
                     }}>
                       {trimmed.replace('## ', '')}
                     </h2>
@@ -120,12 +122,14 @@ export default function BlogPostPage() {
                 if (trimmed.startsWith('### ')) {
                   return (
                     <h3 key={i} style={{
-                      fontFamily: "'Cormorant Garamond', Georgia, serif",
-                      fontSize: '24px',
+                      fontFamily: "'Manrope', sans-serif",
+                      fontWeight: 800,
+                      letterSpacing: '-0.02em',
+                      fontSize: '22px',
                       color: 'var(--color-black)',
                       marginTop: '36px',
-                      marginBottom: '16px',
-                      lineHeight: 1.3,
+                      marginBottom: '14px',
+                      lineHeight: 1.25,
                     }}>
                       {trimmed.replace('### ', '')}
                     </h3>

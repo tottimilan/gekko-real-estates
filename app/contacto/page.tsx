@@ -74,11 +74,11 @@ export default function ContactoPage() {
                 }}>
                   <div style={{
                     width: '48px', height: '48px', borderRadius: '50%',
-                    backgroundColor: 'rgba(168, 131, 41, 0.1)',
+                    backgroundColor: 'rgba(153, 173, 144, 0.16)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     margin: '0 auto 16px',
                   }}>
-                    <info.Icon size={22} style={{ color: 'var(--color-gold)' }} />
+                    <info.Icon size={22} style={{ color: 'var(--color-sage-dark)' }} />
                   </div>
                   <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>{info.title}</h3>
                   {info.lines.map((line, j) => (
