@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Playwright MCP analysis artifacts
+.playwright-mcp/
+gekko-house-*.jpeg
+gekko-house-*.png
+gekko-1.jpeg
