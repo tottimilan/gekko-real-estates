@@ -42,6 +42,8 @@ next-env.d.ts
 
 # Playwright MCP analysis artifacts
 .playwright-mcp/
+research/
 gekko-house-*.jpeg
 gekko-house-*.png
 gekko-1.jpeg
+01-top.png
