@@ -1,0 +1,141 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Book a room" [ref=e6]:
+        - /url: https://www.marriott.de/reservation/availabilitySearch.mi?propertyCode=FRATX&fromDate=&toDate=&numberOfRooms=1&numberOfGuests=1&isSearch=false&isRateCalendar=false&flexibleDateSearchRateDisplay=false&flexibleDateLowestRateMonth=&flexibleDateLowestRateDate=&clusterCode=&corporateCode=&groupCode=&incentiveType_Number=&incentiveType=false&marriottRewardsNumber=&useRewardsPoints=false
+      - link "Book a table" [ref=e8]:
+        - /url: https://www.opentable.de/restref/client/?restref=204567&lang=de-DE&ot_source=Restaurant%20website&rid=204567&corrid=56740b8e-723d-4dbf-81db-ee7bc30c7735
+      - link [ref=e10]:
+        - /url: https://g.page/gekkohouse-frankfurt?share/
+        - img [ref=e11]
+      - link [ref=e13]:
+        - /url: mailto:frankfurt@gekko-house.com
+        - img [ref=e14]
+    - generic [ref=e16]:
+      - generic [ref=e19]: 
+      - navigation "Sprachwechsler" [ref=e21]:
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - link "Wechseln zu EN" [ref=e24]:
+              - /url: https://www.gekko-house.com/en/
+              - generic [ref=e26]: EN
+      - generic [ref=e29]: Book a room
+      - generic [ref=e32]: Book a table
+      - link [ref=e34]:
+        - /url: https://www.gekko-house.com
+        - img [ref=e35]
+  - main [ref=e38]:
+    - article [ref=e39]:
+      - generic [ref=e40]:
+        - 'heading "Gekko House: Urban Design Hotel in Frankfurt" [level=1] [ref=e41]'
+        - generic [ref=e50]:
+          - 'img "Premium Comfort Room: Magazine auf dem Boden vor einer Stehlampe" [ref=e54]'
+          - 'img "Superior Room: Großes Bett, daneben ein Holzschemel und gemütliches Licht." [ref=e58]'
+          - 'img "Lobby Späti: Automaten hinter dem Vorhang, davor Sitzmöglichkeiten, gedämmtes Licht." [ref=e62]'
+          - img "Chicago Roof Rooftopbar Frankfurt" [ref=e66]
+          - 'img "Superior Room: Großes Bett, daneben Holzschemel und warme Lichtquellen." [ref=e70]'
+          - 'img "Restaurant: Bar auf der rechten Seite, Tische links" [ref=e74]'
+          - 'img "Eingangsbereich: Außenansicht des Eingangs mit Logo" [ref=e78]'
+          - 'img "Junior Suite: Bett und davor ein Sofa" [ref=e82]'
+          - 'img "Restaurant: Sitznische mit Blick auf den Smoker" [ref=e86]'
+      - generic [ref=e90]:
+        - generic [ref=e92]:
+          - paragraph [ref=e93]: Hello Hometown! Mitten in der pulsierenden Metropole, im Herzen von Europa ist das Gekko House der Place to be. Ein Hotel in Frankfurt für Individualisten, Business Reisende, Künstler, City Traveller und Wilde Köpfe. Ein Treffpunkt für Globals und Locals. 128 Zimmer im urbanen Design warten auf kosmopolitische und lebhafte Menschen.
+          - paragraph [ref=e94]:
+            - link "peek inside our gallery" [ref=e95]:
+              - /url: https://www.gekko-house.com/galerie/
+              - generic [ref=e96]: peek inside our gallery
+        - generic [ref=e98]:
+          - paragraph [ref=e100]:
+            - link "Rooms + Suites" [ref=e101]:
+              - /url: https://www.gekko-house.com/rooms-suites/
+              - generic [ref=e102]: Rooms + Suites
+          - paragraph [ref=e104]:
+            - link "Chicago Williams" [ref=e105]:
+              - /url: https://www.gekko-house.com/chicago-williams/
+              - generic [ref=e106]: Chicago Williams
+          - paragraph [ref=e108]:
+            - link "Chicago Roof" [ref=e109]:
+              - /url: https://www.gekko-house.com/rooftop/
+              - generic [ref=e110]: Chicago Roof
+          - paragraph [ref=e112]:
+            - link "Neighborhood" [ref=e113]:
+              - /url: https://www.gekko-house.com/neighborhood/
+              - generic [ref=e114]: Neighborhood
+        - generic [ref=e116]:
+          - heading [level=2] [ref=e117]
+          - generic [ref=e119]:
+            - generic [ref=e122]:
+              - paragraph [ref=e123]:
+                - text: Mainzer Landstrasse 167
+                - text: 60327 Frankfurt am Main
+                - text: Germany
+              - paragraph [ref=e124]:
+                - link "Google Maps" [ref=e125]:
+                  - /url: https://goo.gl/maps/gLwB81BUpHSs56cEA
+                  - generic [ref=e126]: Google Maps
+            - paragraph [ref=e130]:
+              - link "P +49 69 299143 0" [ref=e131]:
+                - /url: tel:+49 69 299143 0
+              - link "frankfurt@gekko-house.com" [ref=e132]:
+                - /url: mailto:frankfurt@gekko-house.com
+        - generic [ref=e134]:
+          - heading "Instagram" [level=2] [ref=e135]
+          - paragraph [ref=e136]:
+            - link "#lifeiscrazy" [ref=e137]:
+              - /url: https://www.instagram.com/gekko.house/
+              - generic [ref=e138]: "#lifeiscrazy"
+  - contentinfo [ref=e139]:
+    - generic [ref=e140]:
+      - generic:
+        - generic:
+          - generic:
+            - list:
+              - listitem [ref=e141]:
+                - link "AGB" [ref=e142]:
+                  - /url: https://www.gekko-house.com/agb/
+                  - generic [ref=e143]: AGB
+              - listitem [ref=e144]:
+                - link "Kontakt" [ref=e145]:
+                  - /url: https://www.gekko-house.com/kontakt/
+                  - generic [ref=e146]: Kontakt
+              - listitem [ref=e147]:
+                - link "Family + Friends" [ref=e148]:
+                  - /url: https://www.gekko-group.de/group/
+                  - generic [ref=e149]: Family + Friends
+              - listitem [ref=e150]:
+                - link "Impressum & Datenschutz" [ref=e151]:
+                  - /url: https://www.gekko-house.com/impressum-datenschutz/
+                  - generic [ref=e152]: Impressum & Datenschutz
+              - listitem [ref=e153]:
+                - link "Jobs" [ref=e154]:
+                  - /url: https://www.gekko-house.com/jobs/
+                  - generic [ref=e155]: Jobs
+              - listitem [ref=e156]:
+                - link "Presse" [ref=e157]:
+                  - /url: https://www.gekko-house.com/presse/
+                  - generic [ref=e158]: Presse
+              - listitem [ref=e159]:
+                - link "Erklärung zur Barrierefreiheit" [ref=e160]:
+                  - /url: https://www.gekko-house.com/erklaerung-zur-barrierefreiheit/
+                  - generic [ref=e161]: Erklärung zur Barrierefreiheit
+        - generic [ref=e162]:
+          - link "" [ref=e163]:
+            - /url: https://www.facebook.com/Gekko-House-472764166533536/
+            - generic [ref=e165]: 
+          - link "" [ref=e166]:
+            - /url: https://www.instagram.com/gekko.house/
+            - generic [ref=e168]: 
+    - paragraph [ref=e172]:
+      - text: © 2026
+      - generic [ref=e175]: Back to top
+      - text: Gekko House Betriebs GmbH
+    - generic [ref=e177]:
+      - link [ref=e179]:
+        - /url: http://www.gekko-group.de/
+      - link [ref=e181]:
+        - /url: http://www.chicagowilliamsbbq.de/
+      - link [ref=e183]:
+        - /url: https://tribute-portfolio.marriott.com/de-DE/
+      - link [ref=e185]:
+        - /url: https://www.marriott.de/

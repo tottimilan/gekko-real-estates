@@ -1,12 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface HeroBullet {
   bold: string;
   text: string;
+}
+
+interface HeroImage {
+  src: string;
+  alt: string;
+  caption?: string;
 }
 
 interface HeroProps {
@@ -22,236 +28,263 @@ interface HeroProps {
     text: string;
     href: string;
   };
-  backgroundImage?: string;
+  images?: HeroImage[];
 }
+
+const defaultImages: HeroImage[] = [
+  {
+    src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1400&auto=format&fit=crop',
+    alt: 'Salón luminoso con grandes ventanales',
+    caption: 'Living: luz natural, suelos de madera, encanto madrileño.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop',
+    alt: 'Cocina moderna abierta al salón',
+    caption: 'Cocina abierta: el sitio donde de verdad se vive.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop',
+    alt: 'Edificio clásico de Madrid',
+    caption: 'Madrid, sus barrios, su gente. Aquí jugamos en casa.',
+  },
+];
 
 export default function Hero({
   title,
-  subtitle,
+  subtitle = 'GEKKO REAL ESTATE · MADRID',
   description,
-  bullets,
   primaryCTA,
   secondaryCTA,
-  backgroundImage = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop',
+  images = defaultImages,
 }: HeroProps) {
   return (
     <section
       style={{
         position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
+        backgroundColor: 'var(--color-bg)',
+        paddingTop: '160px',
+        paddingBottom: '120px',
         overflow: 'hidden',
       }}
     >
-      {/* Background image */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }} />
+      {/* Subtle texture / grid background */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage:
+            'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)',
+          backgroundSize: '32px 32px',
+          opacity: 0.5,
+          pointerEvents: 'none',
+        }}
+      />
 
-      {/* Dark overlay */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(135deg, rgba(10,10,10,0.82) 0%, rgba(26,26,26,0.65) 60%, rgba(10,10,10,0.75) 100%)',
-      }} />
-
-      {/* Subtle gold accent line top */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: '3px',
-        background: 'linear-gradient(90deg, transparent, var(--color-gold), transparent)',
-        opacity: 0.5,
-      }} />
-
-      {/* Content */}
-      <div className="wrapper" style={{
-        position: 'relative',
-        zIndex: 10,
-        paddingTop: '140px',
-        paddingBottom: '80px',
-        maxWidth: '1260px',
-      }}>
-        <div style={{ maxWidth: '680px' }}>
-          {subtitle && (
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              style={{
-                display: 'inline-block',
-                color: 'var(--color-gold)',
-                fontSize: '11px',
-                fontWeight: 700,
-                letterSpacing: '0.3em',
-                textTransform: 'uppercase',
-                marginBottom: '20px',
-                fontFamily: "'Montserrat', sans-serif",
-              }}
-            >
-              {subtitle}
-            </motion.span>
-          )}
-
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+      <div
+        className="wrapper"
+        style={{ position: 'relative', zIndex: 1, maxWidth: '1320px' }}
+      >
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            marginBottom: '28px',
+          }}
+        >
+          <span
             style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(36px, 5vw, 58px)',
-              fontWeight: 600,
-              color: '#FFFFFF',
-              lineHeight: 1.12,
-              marginBottom: '28px',
-            }}
-          >
-            {title}
-          </motion.h1>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            style={{
-              width: '50px',
-              height: '2px',
+              width: '32px',
+              height: '1px',
               backgroundColor: 'var(--color-gold)',
-              marginBottom: '28px',
-              transformOrigin: 'left',
             }}
           />
+          <span className="eyebrow">{subtitle}</span>
+        </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
+        {/* Mega heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="title-mega"
+          style={{
+            maxWidth: '1100px',
+            marginBottom: '40px',
+          }}
+        >
+          {title}
+        </motion.h1>
+
+        {/* Editorial body + CTAs row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '32px',
+            alignItems: 'end',
+            maxWidth: '1100px',
+            marginBottom: '80px',
+          }}
+        >
+          <p
+            className="editorial-lead"
             style={{
-              fontSize: '16px',
-              lineHeight: 1.8,
-              color: 'rgba(255,255,255,0.75)',
-              marginBottom: '32px',
-              maxWidth: '560px',
+              maxWidth: '640px',
+              margin: 0,
             }}
           >
             {description}
-          </motion.p>
+          </p>
 
-          {/* Bullet Points */}
-          {bullets && bullets.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
+          {(primaryCTA || secondaryCTA) && (
+            <div
               style={{
                 display: 'flex',
-                flexDirection: 'column',
                 gap: '14px',
-                marginBottom: '40px',
+                flexWrap: 'wrap',
+                alignItems: 'center',
               }}
             >
-              {bullets.map((bullet, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+              {primaryCTA && (
+                <Link
+                  href={primaryCTA.href}
                   style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '12px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    padding: '16px 28px',
+                    backgroundColor: 'var(--color-black)',
+                    color: 'var(--color-white)',
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    letterSpacing: '0.04em',
+                    borderRadius: '999px',
+                    transition: 'all 0.3s ease',
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-gold)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-black)';
                   }}
                 >
-                  <CheckCircle2
-                    size={18}
-                    style={{ color: 'var(--color-gold)', flexShrink: 0, marginTop: '2px' }}
-                  />
-                  <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.6, margin: 0 }}>
-                    <strong style={{ color: '#FFFFFF', fontWeight: 600 }}>{bullet.bold}</strong>{' '}
-                    {bullet.text}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
+                  {primaryCTA.text}
+                  <ArrowRight size={14} />
+                </Link>
+              )}
+              {secondaryCTA && (
+                <Link
+                  href={secondaryCTA.href}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    padding: '16px 28px',
+                    color: 'var(--color-black)',
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    letterSpacing: '0.04em',
+                    borderRadius: '999px',
+                    border: '1px solid var(--color-black)',
+                    transition: 'all 0.3s ease',
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-black)';
+                    e.currentTarget.style.color = 'var(--color-white)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'var(--color-black)';
+                  }}
+                >
+                  {secondaryCTA.text}
+                </Link>
+              )}
+            </div>
           )}
+        </motion.div>
 
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-            style={{
-              display: 'flex',
-              gap: '14px',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-            }}
-          >
-            {primaryCTA && (
-              <Link
-                href={primaryCTA.href}
-                className="btn btn-primary"
+        {/* Moodboard gallery */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '24px',
+          }}
+        >
+          {images.map((img, i) => {
+            const rotations = ['-2deg', '1.5deg', '-1deg', '2deg'];
+            const rotation = rotations[i % rotations.length];
+            const offsets = ['0px', '24px', '0px', '32px'];
+            const offset = offsets[i % offsets.length];
+            return (
+              <motion.figure
+                key={img.src}
+                initial={{ opacity: 0, y: 30, rotate: '0deg' }}
+                animate={{ opacity: 1, y: 0, rotate: rotation }}
+                transition={{ duration: 0.6, delay: 0.5 + i * 0.1 }}
+                whileHover={{ rotate: '0deg', y: -6 }}
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
+                  marginTop: offset,
+                  backgroundColor: 'var(--color-white)',
+                  padding: '12px 12px 16px',
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.08)',
+                  transition: 'transform 0.4s ease',
+                  transformOrigin: 'center top',
                 }}
               >
-                {primaryCTA.text}
-                <ArrowRight size={16} />
-              </Link>
-            )}
-            {secondaryCTA && (
-              <Link
-                href={secondaryCTA.href}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '16px 40px',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: '#FFFFFF',
-                  border: '2px solid rgba(255,255,255,0.35)',
-                  borderRadius: '4px',
-                  transition: 'all 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-gold)';
-                  e.currentTarget.style.color = 'var(--color-gold)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-              >
-                {secondaryCTA.text}
-              </Link>
-            )}
-          </motion.div>
-        </div>
+                <div
+                  style={{
+                    aspectRatio: '4 / 5',
+                    overflow: 'hidden',
+                    backgroundColor: 'var(--color-arena)',
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+                {img.caption && (
+                  <figcaption
+                    style={{
+                      marginTop: '12px',
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '12px',
+                      lineHeight: 1.5,
+                      color: 'var(--color-text-light)',
+                      letterSpacing: '0.01em',
+                    }}
+                  >
+                    {img.caption}
+                  </figcaption>
+                )}
+              </motion.figure>
+            );
+          })}
+        </motion.div>
       </div>
-
-      {/* Bottom fade */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '120px',
-        background: 'linear-gradient(to top, var(--color-bg), transparent)',
-        pointerEvents: 'none',
-        zIndex: 5,
-      }} />
     </section>
   );
 }

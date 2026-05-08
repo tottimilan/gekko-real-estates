@@ -74,20 +74,15 @@ export default function HomePage() {
   return (
     <main>
       <Hero
-        subtitle="GEKKO REAL ESTATE"
-        title="Tu espacio de inversiones inmobiliarias inteligentes"
-        description="Nuestro compromiso es asegurarnos que puedes fluir satisfactoriamente en transacciones de Real Estate con confianza, tranquilidad y disfrutando del proceso."
-        bullets={[
-          { bold: 'Compra y rentabiliza', text: 'con datos reales del mercado inmobiliario de Madrid.' },
-          { bold: 'Socios estratégicos', text: 'de las principales inmobiliarias y promotoras de España.' },
-          { bold: 'Acompañamiento de expertos', text: 'en inversión, finanzas y gestión patrimonial.' },
-        ]}
+        subtitle="GEKKO REAL ESTATE · MADRID"
+        title="Hola Madrid."
+        description="Inmobiliaria, inversión y reformas en Madrid. Para los que compran, los que invierten y los que reforman. Para los que valoran que las cosas se hagan bien."
         primaryCTA={{
-          text: 'Descubre nuestros servicios',
+          text: 'Ver servicios',
           href: '/servicios',
         }}
         secondaryCTA={{
-          text: 'Contáctanos',
+          text: 'Hablamos',
           href: '/contacto',
         }}
       />
